@@ -1,9 +1,6 @@
 name: Build
 on:
   pull_request:
-  push:
-    branches:
-      - JDN-9
 jobs:
   gradle:
     strategy:
