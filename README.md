@@ -1,5 +1,7 @@
 # Judson
 
+![GitHubActionsStatus](https://github.com/isnullxbh/Judson/actions/workflows/judson.yml/badge.svg)
+
 Telegram bot for tracking packages
 
 ## Prerequisites
