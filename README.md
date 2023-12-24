@@ -36,6 +36,11 @@ To run bundled application:
 2. Go to `Judson-<VERSION>/bin`.
 3. Run `Judson` by passing the bot token.
 
+## Supported couriers
+
+- [x] Cainiao
+- [ ] Russian Post
+
 ## Author
 
 Oleg E. Vorobiov <isnullxbh@gmail.com>
