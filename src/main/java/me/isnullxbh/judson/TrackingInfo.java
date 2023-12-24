@@ -20,4 +20,9 @@ public class TrackingInfo
 
     /** Destination country */
     public String to;
+
+    public String toString()
+    {
+        return String.format("%s: %s", trackingNumber, status);
+    }
 }

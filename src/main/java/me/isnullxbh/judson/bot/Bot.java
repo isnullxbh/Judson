@@ -1,5 +1,8 @@
 package me.isnullxbh.judson.bot;
 
+import me.isnullxbh.judson.bot.commands.Where;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -10,14 +13,23 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 public class Bot extends TelegramLongPollingCommandBot
 {
+    private final Logger logger = LoggerFactory.getLogger(Bot.class);
+
     public Bot(String token)
     {
         super(token);
+        registerCommands();
     }
 
     public Bot(DefaultBotOptions options, String token)
     {
         super(options, token);
+        registerCommands();
+    }
+
+    private void registerCommands()
+    {
+        register(new Where());
     }
 
     @Override
@@ -31,7 +43,7 @@ public class Bot extends TelegramLongPollingCommandBot
     {
         if (update.hasMessage() && update.getMessage().hasText())
         {
-            System.out.printf("Non command update: %s", update.getMessage().getText());
+            logger.warn("Non command update: {}", update.getMessage().getText());
         }
     }
 }

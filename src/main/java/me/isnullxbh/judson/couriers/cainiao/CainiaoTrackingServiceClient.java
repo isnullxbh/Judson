@@ -8,6 +8,8 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
@@ -18,11 +20,12 @@ import java.util.Optional;
 public class CainiaoTrackingServiceClient implements TrackingServiceClient
 {
     private final CloseableHttpClient client;
+    private final Logger logger = LoggerFactory.getLogger(CainiaoTrackingServiceClient.class);
 
     /**
      * Creates an instance of client with the default parameters.
      */
-    CainiaoTrackingServiceClient() {
+    public CainiaoTrackingServiceClient() {
         client = HttpClientBuilder.create().build();
     }
 
@@ -42,6 +45,7 @@ public class CainiaoTrackingServiceClient implements TrackingServiceClient
 
             if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
             {
+                logger.error("Tracking service request failed: {}", response.getStatusLine().toString());
                 return Optional.empty();
             }
 
@@ -66,6 +70,7 @@ public class CainiaoTrackingServiceClient implements TrackingServiceClient
         }
         catch (Exception ex)
         {
+            logger.error("An error occurred while tracking the package: {}", ex.getMessage());
             return Optional.empty();
         }
     }
